@@ -4,12 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <!-- 拦截器翻页时使用 支持oracle 和 mysql 数据库 通过databaseType来区分  -->
-    <!--<plugins>
-        <plugin interceptor="cn.com.bizunited.cp.crmadmin.interceptor.PageableHelper">
+    <plugins>
+        <plugin interceptor="com.wish.util.PaginationInterceptor">
             <property name="dialect" value="mysql" />
             <property name="pageSqlId" value=".*Page$" />
         </plugin>
 
     </plugins>
-    -->
 </configuration>

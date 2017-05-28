@@ -12,6 +12,9 @@
         values(#{bookId},#{userId},#{invitedBy,jdbcType=VARCHAR})
     </insert>
 
-
+    <sql id="columns">
+        bu.id,bu.book_id bookid,bu.user_id userid,bu.invited_by invitedby,
+        bu.join_time jointime,bu.status,bu.leave_by,bu.level_time
+    </sql>
 
 </mapper>

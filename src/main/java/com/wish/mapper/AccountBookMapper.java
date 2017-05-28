@@ -1,6 +1,10 @@
 package com.wish.mapper;
 
 import com.wish.model.dto.AccountBookDTO;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * 账本mapper
@@ -12,4 +16,11 @@ public interface AccountBookMapper {
      * @param accountBookDTO
      */
     void saveAccountBook(AccountBookDTO accountBookDTO);
+
+    /**
+     * 根据用户id分页查询关联的账本
+     * @param map
+     * @return
+     */
+    List<AccountBookDTO> findBookByUserIdPage(@Param("map") Map<String,Object> map);
 }

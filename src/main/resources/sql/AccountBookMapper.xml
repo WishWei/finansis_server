@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wish.mapper.AccountBookMapper">
 
-    <resultMap id="user" type="com.wish.model.dto.AccountBookDTO" />
+    <resultMap id="accountBook" type="com.wish.model.dto.AccountBookDTO" />
 
     <!-- 保存账本 -->
     <insert id="saveAccountBook" useGeneratedKeys="true" keyProperty="id">
@@ -12,6 +12,20 @@
         values (#{name},#{description,jdbcType=VARCHAR},#{headImg,jdbcType=VARCHAR},
         #{createBy,jdbcType=VARCHAR})
     </insert>
+
+
+    <!-- 根据用户id分页查询关联的账本 -->
+    <select id="findBookByUserIdPage" resultMap="accountBook">
+        select <include refid="columns"/>
+        from tb_accounts_book b
+        left join tb_book_user bu on b.id = bu.book_id
+        where b.status = 1
+        and bu.user_id = #{map.userId}
+    </select>
+
+    <sql id="columns">
+        b.id,b.name,b.description,b.head_img headimg,b.create_by createby,b.status,b.create_time
+    </sql>
 
 
 </mapper>
