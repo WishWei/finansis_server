@@ -37,6 +37,13 @@ public class ResponseBean <T> {
         return responseBean;
     }
 
+    public static ResponseBean responseSuccess(String message) {
+        ResponseBean responseBean = new ResponseBean();
+        responseBean.code = CODE_SUCCESS;
+        responseBean.message = message;
+        return responseBean;
+    }
+
     public static ResponseBean responseError(String message) {
         ResponseBean responseBean = new ResponseBean();
         responseBean.code = CODE_ERROR;

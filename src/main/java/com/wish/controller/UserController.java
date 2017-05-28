@@ -5,6 +5,8 @@ import com.wish.model.dto.UserDTO;
 import com.wish.service.UserService;
 import com.wish.util.MD5Util;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,10 @@ public class UserController {
     @RequestMapping(value = "/login.do", method = RequestMethod.GET)
     @ResponseBody
     @ApiOperation(value = "用户登录", notes = "通过用户名和密码登录")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "name", value = "账号", required = true, paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = "password", value = "密码", required = true, paramType = "query", dataType = "String")
+    })
     public ResponseBean<UserDTO> login(@RequestParam("name") String name, @RequestParam("password") String password) {
         //密码加密
         String md5Password = MD5Util.MD5(password);
@@ -36,7 +42,6 @@ public class UserController {
             return ResponseBean.responseError("用户名或密码错误");
         }
         return ResponseBean.responseSuccess(userDTO, "登录成功");
-
 
     }
 }

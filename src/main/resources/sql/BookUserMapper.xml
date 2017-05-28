@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wish.mapper.BookUserMapper">
+
+    <resultMap id="user" type="com.wish.model.dto.BookUserDTO" />
+
+    <!-- 保存账本用户关系 -->
+    <insert id="saveBookUser">
+        insert into tb_book_user(book_id,user_id,invited_by)
+        values(#{bookId},#{userId},#{invitedBy,jdbcType=VARCHAR})
+    </insert>
+
+
+
+</mapper>

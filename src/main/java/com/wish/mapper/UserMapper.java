@@ -4,7 +4,7 @@ import com.wish.model.dto.UserDTO;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * 用户Mapper
+ * 用户mapper
  * Created by wish on 2017/5/27.
  */
 public interface UserMapper {

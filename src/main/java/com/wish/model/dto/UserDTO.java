@@ -24,7 +24,7 @@ public class UserDTO {
     @ApiModelProperty("上次登录时间")
     private Date lastLogin;
     @ApiModelProperty("状态 1正常 0删除")
-    private String status;
+    private Integer status;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     @ApiModelProperty("创建时间")
     private Date createTime;
@@ -69,11 +69,11 @@ public class UserDTO {
         this.lastLogin = lastLogin;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
