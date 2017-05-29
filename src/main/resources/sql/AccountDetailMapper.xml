@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wish.mapper.AccountDetailMapper">
+
+    <resultMap id="accountDetail" type="com.wish.model.dto.AccountDetailDTO" />
+
+    <!-- 保存账本明细 -->
+    <insert id="saveAccountDetail" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_account_detail(book_id,user_id,`type`,money,account_time,category,remark)
+        values(#{bookId},#{userId},#{type},#{money},#{accountTime},#{category},#{remark,jdbcType=VARCHAR})
+    </insert>
+
+
+    <!-- 根据账本id分页查询明细 -->
+    <select id="findBookDetailByBookIdPage" resultMap="accountDetail">
+        select <include refid="columns"/>
+        from tb_account_detail d
+        where d.status = 1
+        and d.book_id = #{map.bookId}
+    </select>
+
+    <sql id="columns">
+        d.id,d.book_id bookid,d.user_id userid,d.type,d.money,d.account_time accounttime,
+        d.category,d.remark,d.status,d.create_time createtime,d.update_time updatetime
+    </sql>
+
+
+</mapper>
