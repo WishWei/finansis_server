@@ -23,6 +23,12 @@
         order by d.account_time desc,d.create_time desc
     </select>
 
+    <!-- 查询账本总金额 -->
+    <select id="findTotalMoneyByBookId" resultType="com.wish.model.dto.AccountSummaryDTO">
+        select count(1) detailcount,sum(if(d.type=1,-1,1)*money) totalmoney from tb_account_detail d
+        where d.status = 1 and d.book_id=#{bookId}
+    </select>
+
     <sql id="columns">
         d.id,d.book_id bookid,d.user_id userid,d.type,d.money,d.account_time accounttime,
         d.category,d.remark,d.status,d.create_time createtime,d.update_time updatetime

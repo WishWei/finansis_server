@@ -1,7 +1,10 @@
 package com.wish.service;
 
 import com.wish.model.dto.AccountDetailDTO;
+import com.wish.model.dto.AccountSummaryDTO;
 import com.wish.model.dto.PageInfo;
+
+import java.math.BigDecimal;
 
 /**
  * Created by wish on 2017/5/29.
@@ -24,4 +27,12 @@ public interface AccountDetailService {
      * @return
      */
     PageInfo<AccountDetailDTO> findBookDetailByBookIdPage(Integer bookId, int page, int pageSize);
+
+    /**
+     * 查询账本统计
+     *
+     * @param bookId 账本id
+     * @return
+     */
+    AccountSummaryDTO findTotalMoneyByBookId(Integer bookId);
 }

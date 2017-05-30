@@ -2,12 +2,14 @@ package com.wish.service.impl;
 
 import com.wish.mapper.AccountDetailMapper;
 import com.wish.model.dto.AccountDetailDTO;
+import com.wish.model.dto.AccountSummaryDTO;
 import com.wish.model.dto.PageInfo;
 import com.wish.service.AccountDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,5 +40,16 @@ public class AccountDetailServiceImpl implements AccountDetailService{
         List<AccountDetailDTO> accountDetailDTOS = accountDetailMapper.findBookDetailByBookIdPage(params);
         pageInfo.setItems(accountDetailDTOS);
         return pageInfo;
+    }
+
+    /**
+     * 查询账本总金额
+     *
+     * @param bookId 账本id
+     * @return
+     */
+    @Override
+    public AccountSummaryDTO findTotalMoneyByBookId(Integer bookId) {
+        return accountDetailMapper.findTotalMoneyByBookId(bookId);
     }
 }

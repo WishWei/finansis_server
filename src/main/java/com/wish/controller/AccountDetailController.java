@@ -1,9 +1,6 @@
 package com.wish.controller;
 
-import com.wish.model.dto.AccountBookDTO;
-import com.wish.model.dto.AccountDetailDTO;
-import com.wish.model.dto.PageInfo;
-import com.wish.model.dto.ResponseBean;
+import com.wish.model.dto.*;
 import com.wish.service.AccountDetailService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -80,6 +77,22 @@ public class AccountDetailController {
         try {
             PageInfo pageInfo = accountDetailService.findBookDetailByBookIdPage(bookId, page, pageSize);
             return ResponseBean.responseSuccess(pageInfo, "查询成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseBean.responseError("查询失败");
+        }
+    }
+
+    @RequestMapping(value = "/findTotalMoneyByBookId.do", method = RequestMethod.GET)
+    @ResponseBody
+    @ApiOperation(value = "根据账本id查询账本统计", notes = "根据账本id查询账本统计")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "bookId", value = "账本id", required = true, paramType = "query", dataType = "String")
+    })
+    public ResponseBean<AccountSummaryDTO> findTotalMoneyByBookId(@RequestParam("bookId") Integer bookId) {
+        try {
+            AccountSummaryDTO accountSummaryDTO = accountDetailService.findTotalMoneyByBookId(bookId);
+            return ResponseBean.responseSuccess(accountSummaryDTO, "查询成功");
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseBean.responseError("查询失败");

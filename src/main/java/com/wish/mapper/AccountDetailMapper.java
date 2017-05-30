@@ -1,6 +1,7 @@
 package com.wish.mapper;
 
 import com.wish.model.dto.AccountDetailDTO;
+import com.wish.model.dto.AccountSummaryDTO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -14,15 +15,25 @@ public interface AccountDetailMapper {
 
     /**
      * 保存账本明细
+     *
      * @param accountDetailDTO
      */
     void saveAccountDetail(AccountDetailDTO accountDetailDTO);
 
     /**
      * 根据账本id分页查询明细
+     *
      * @param map
      * @return
      */
     List<AccountDetailDTO> findBookDetailByBookIdPage(@Param("map") Map<String,Object> map);
+
+    /**
+     * 查询账本统计
+     *
+     * @param bookId 账本id
+     * @return
+     */
+    AccountSummaryDTO findTotalMoneyByBookId(Integer bookId);
 
 }
