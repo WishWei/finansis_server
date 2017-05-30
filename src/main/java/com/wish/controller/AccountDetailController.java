@@ -9,13 +9,12 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.apache.commons.lang.time.DateFormatUtils;
-import org.apache.commons.lang.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 
 /**
  * 账本明细controller
@@ -49,13 +48,15 @@ public class AccountDetailController {
                                           @RequestParam("category") String category,
                                           @RequestParam("remark") String remark) throws Exception{
 
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
         try {
             AccountDetailDTO accountDetailDTO = new AccountDetailDTO();
             accountDetailDTO.setUserId(loginUserId);
             accountDetailDTO.setBookId(bookId);
             accountDetailDTO.setType(type);
             accountDetailDTO.setMoney(money);
-            accountDetailDTO.setAccountTime(DateUtils.parseDate(accountTime, new String[]{"yyyy-MM-dd HH:mm:ss"}));
+            accountDetailDTO.setAccountTime(sdf.parse(accountTime));
             accountDetailDTO.setCategory(category);
             accountDetailDTO.setRemark(remark);
             accountDetailService.saveAccountDetail(accountDetailDTO);

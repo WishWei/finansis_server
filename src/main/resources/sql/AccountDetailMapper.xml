@@ -15,10 +15,12 @@
 
     <!-- 根据账本id分页查询明细 -->
     <select id="findBookDetailByBookIdPage" resultMap="accountDetail">
-        select <include refid="columns"/>
+        select <include refid="columns"/>,u.name username
         from tb_account_detail d
+        left join tb_user u on d.user_id = u.id
         where d.status = 1
         and d.book_id = #{map.bookId}
+        order by d.account_time desc,d.create_time desc
     </select>
 
     <sql id="columns">

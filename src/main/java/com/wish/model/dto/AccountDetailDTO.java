@@ -1,5 +1,6 @@
 package com.wish.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -21,6 +22,7 @@ public class AccountDetailDTO {
     private Integer type;
     @ApiModelProperty("金额")
     private BigDecimal money;
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone="GMT+8")
     @ApiModelProperty("交易时间")
     private Date accountTime;
     @ApiModelProperty("类别")
@@ -29,10 +31,14 @@ public class AccountDetailDTO {
     private String remark;
     @ApiModelProperty("状态 0删除 1正常")
     private String status;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     @ApiModelProperty("创建时间")
     private Date createTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     @ApiModelProperty("更新时间")
     private Date updateTime;
+    @ApiModelProperty("用户名")
+    private String userName;
 
     public Integer getId() {
         return id;
@@ -120,5 +126,13 @@ public class AccountDetailDTO {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }
